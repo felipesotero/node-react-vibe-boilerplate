@@ -25,7 +25,7 @@ Criar um boilerplate que permita:
 ├── AGENTS.md
 ├── .cursor/
 │   └── rules/
-│       └── ecco-safet-project-rules/
+│       └── vibe-boilerplate-project-rules/
 │           └── RULE.md
 ├── .cursor/rules.yaml
 ├── .antigravity/
@@ -59,7 +59,7 @@ Os arquivos em `mcp/` já trazem boilerplates para conectar servidores MCP (file
 
 ## 4) Regras de IA e arquitetura
 
-- Regras do Cursor em `.cursor/rules.yaml` e `.cursor/rules/ecco-safet-project-rules/RULE.md`.
+- Regras do Cursor em `.cursor/rules.yaml` e `.cursor/rules/vibe-boilerplate-project-rules/RULE.md`.
 - Regras do Codex em `AGENTS.md`.
 - Instruções do Antigravity em `.antigravity/instructions.md`.
 
