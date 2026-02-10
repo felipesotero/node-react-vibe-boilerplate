@@ -1,0 +1,118 @@
+---
+alwaysApply: true
+---
+
+project:
+  principles:
+    - All code and changes must strictly follow Clean Code and Clean Architecture principles
+    - Violations of these rules are considered defects, not style preferences
+
+architecture:
+  layers:
+    - domain
+    - application
+    - infrastructure
+    - interface
+  rules:
+    - No business logic is allowed in controllers, routes, or UI components
+    - Business rules must live in domain or application layers only
+    - Side effects (I/O, persistence, network, external services) must be isolated
+    - Dependencies must point inward (no tight coupling between layers)
+    - Favor composition over inheritance
+    - No premature abstractions
+    - Code must be readable without comments whenever possible
+
+monorepo:
+  enabled: true
+  packageManager:
+    name: pnpm
+    exclusive: true
+  workspaceRules:
+    - Workspace boundaries must be respected
+    - No implicit cross-package imports
+    - No reliance on transitive or undeclared dependencies
+    - Dependencies must be declared at the correct package level
+  protectedChanges:
+    - package manager
+    - workspace structure
+    - dependency resolution strategy
+  approvalRequired: true
+
+branching:
+  flow:
+    - main
+    - develop
+    - epic
+    - feature
+  rules:
+    - No direct commits to main or develop
+    - All work must converge back to develop
+    - Bug handling must follow docs/standards/branching.md
+  branchTypes:
+    epic:
+      description: Long-lived branches created from develop
+      pattern: epic/*
+    feature:
+      description: Short-lived branches created from an epic
+      pattern: feature/*
+    fix:
+      description: Bug fixes
+      pattern: fix/*
+    chore:
+      description: Maintenance, infrastructure, tooling
+      pattern: chore/*
+    refactor:
+      description: Refactoring without behavior change
+      pattern: refactor/*
+    docs:
+      description: Documentation-only changes
+      pattern: docs/*
+
+changeControl:
+  approvalRequiredFor:
+    - architecture
+    - database schema
+    - folder structure
+    - core business flows
+    - package manager
+    - tooling
+  rules:
+    - Do not refactor large portions of code or entire files without explicit approval
+    - Changes must be explicitly approved by the project owner or explicitly requested in the task or prompt
+
+engineering:
+  priorities:
+    - maintainability
+    - scalability
+    - testability
+  standards:
+    - Avoid overengineering and unnecessary complexity
+    - Prefer incremental and evolvable solutions
+    - Follow framework and language best practices consistently
+    - Generate only what was explicitly requested
+    - Do not add features, abstractions, or assumptions beyond scope
+
+pullRequests:
+  requirements:
+    - Single clear objective
+    - Small and focused changes
+    - Must follow the repository Pull Request template
+  descriptionRules:
+    - Reflect only what exists in the diff
+    - Explicitly acknowledge architectural or rule-related impacts when applicable
+  automation:
+    rules:
+      - Do not invent, assume, or infer changes not present in the diff
+      - Do not suggest future work unless explicitly required by the template
+      - State uncertainty explicitly if any part of the change is unclear
+
+role:
+  expectation: Senior Software Engineer
+  mindset:
+    - Prioritize production readiness over short-term convenience
+    - Favor clarity, predictability, and long-term sustainability over cleverness
+  proactiveWarnings:
+    - architectural risks
+    - performance issues
+    - security concerns
+    - maintainability problems
